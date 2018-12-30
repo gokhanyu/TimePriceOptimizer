@@ -102,3 +102,9 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+.vs/
+*.hdf5
+core/ztemp_wavelets.py
+core/ztemp_plot.py
+core/ztemp_datetime.py
+core/ztemp_arrayshape.py

@@ -1,0 +1,69 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>26643427-01c4-44bf-a057-06e5c110a5de</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>run.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <Name>TimePriceOptimizer</Name>
+    <RootNamespace>TimePriceOptimizer</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="core\datareader.py" />
+    <Compile Include="core\dataprocessor.py" />
+    <Compile Include="core\fixinterrupthandler.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="core\nnmodel.py" />
+    <Compile Include="core\nntelossearch.py" />
+    <Compile Include="core\datapreprocessor.py" />
+    <Compile Include="core\signalstopping.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="core\ztemp_arrayshape.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="core\ztemp_datetime.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="core\options.py" />
+    <Compile Include="core\plotter.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="core\utils.py" />
+    <Compile Include="core\ztemp_plot.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="core\ztemp_wavelets.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="run.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="core\" />
+    <Folder Include="data\" />
+    <Folder Include="data\pre_out\" />
+    <Folder Include="saved_models\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+  <!-- Uncomment the CoreCompile target to enable the Build command in
+       Visual Studio and specify your pre- and post-build commands in
+       the BeforeBuild and AfterBuild targets below. -->
+  <!--<Target Name="CoreCompile" />-->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+</Project>
