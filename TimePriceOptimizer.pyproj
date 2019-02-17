@@ -21,9 +21,21 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="core\dataprepare.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="core\datareader.py" />
     <Compile Include="core\dataprocessor.py" />
     <Compile Include="core\fixinterrupthandler.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="core\nnloss.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="tmp\array.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="tmp\lolo1.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="core\nnmodel.py" />
@@ -32,10 +44,22 @@
     <Compile Include="core\signalstopping.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="core\ztemp_arrayshape.py">
+    <Compile Include="tmp\ucanlar.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="core\ztemp_datetime.py">
+    <Compile Include="tmp\zreview_datareader.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="tmp\zreview_preprocessor.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="tmp\zrun_review.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="tmp\ztemp_arrayshape.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="tmp\ztemp_datetime.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="core\options.py" />
@@ -43,10 +67,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="core\utils.py" />
-    <Compile Include="core\ztemp_plot.py">
+    <Compile Include="tmp\ztemp_plot.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="core\ztemp_wavelets.py">
+    <Compile Include="tmp\ztemp_wavelets.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="run.py" />
@@ -55,7 +79,13 @@
     <Folder Include="core\" />
     <Folder Include="data\" />
     <Folder Include="data\pre_out\" />
+    <Folder Include="dll\" />
+    <Folder Include="tmp\" />
     <Folder Include="saved_models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="dll\externals.dll" />
+    <Content Include="tmp\dev_notes.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
