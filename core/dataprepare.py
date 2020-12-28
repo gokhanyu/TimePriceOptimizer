@@ -3,8 +3,8 @@ class DataPrepare :
   @staticmethod
   def run(out_futures_path, in_futures_path, train_start_date, future_start_date, future_end_date) :
     try:
-      import clr
       import sys
+      import clr
       import os
       cwd = os.getcwd()
 
