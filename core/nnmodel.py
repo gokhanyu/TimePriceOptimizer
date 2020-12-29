@@ -96,6 +96,54 @@ class NNModel():
 		return callbacks
 
 
+
+	def build_one_by_one_model_ngut(self) : 
+		timer = Timer()
+		timer.start()
+		Options.KerasEarlyStopping = False
+		self.model.add(Dense(64, activation='sigmoid', input_dim=Options.InputFeatureSize, activity_regularizer=keras.regularizers.l2(0.01))) 
+		self.model.add(BatchNormalization()) 
+		self.model.add(LeakyReLU()) 
+		self.model.add(Dense(16, activity_regularizer=keras.regularizers.l2(0.01))) 
+		self.model.add(BatchNormalization()) 
+		self.model.add(LeakyReLU()) 
+		self.model.add(Dense(1)) 
+		self.model.add(Activation('linear'))
+		optimizer = RMSprop(lr = 0.00050)
+		self.model_loss = 'mae' #'mean_squared_error', 'mae'
+		self.model.compile(optimizer = optimizer, loss = self.model_loss, metrics = list(set(['mae', self.model_loss])))
+		print('[Model] Model Compiled')
+		print('[Model] Model Loss Function is %s.' % (self.model_loss))
+		timer.stop()
+		self.model.summary()
+		return self.model
+
+
+
+	def build_one_by_one_model_gut(self) :
+		timer = Timer()
+		timer.start()
+		Options.KerasEarlyStopping = False
+		self.model.add(Dropout(0.2, input_shape=(Options.InputFeatureSize,)))
+		self.model.add(Dense(70, input_dim = Options.InputFeatureSize, activation = 'sigmoid', 
+        kernel_initializer='glorot_uniform', bias_initializer='zeros')) #CAREFUL SIGMOID , NO NORMAL INIT
+		self.model.add(Dropout(0.2))
+		#self.model.add(Dense(25, activation = 'relu'))
+		self.model.add(Dense(1, activation = 'linear')) #CAREFUL SIGMOID
+		optimizer = RMSprop(lr = 0.00050)
+		#optimizer = RMSprop()
+		#optimizer = SGD()
+		#optimizer = Adam()
+		self.model_loss = 'mae' #'mean_squared_error', 'mae', 'logcosh'
+		self.model.compile(optimizer = optimizer, loss = self.model_loss, metrics = list(set(['mae', 'mean_absolute_percentage_error', 'mean_squared_error', 'logcosh', self.model_loss])))
+		print('[Model] Model Compiled')
+		print('[Model] Model Loss Function is %s.' % (self.model_loss))
+		timer.stop()
+		self.model.summary()
+		return self.model
+
+
+
 	def build_one_by_one_model_test(self) :
 		timer = Timer()
 		timer.start()
@@ -125,8 +173,25 @@ class NNModel():
 
 
 
-	def predict(self, x_input):
-		return self.model.predict(x_input)
+	def predict(self, x_input, name) :
+
+		if (len(x_input) == 0) :
+			print("SKIPPING predicting %s, length 0." % (name))
+			return []
+
+		y_pred = self.model.predict(x_input)
+		return y_pred
+
+
+	def save_pred_to_csv(self, save_dirs_array, identifier_str, pred_dates, pred_y) :
+		if (len(pred_y) > 0) :
+		  for save_dir in save_dirs_array :
+		    Utils.ensure_directory(save_dir)
+		    save_fname = os.path.join(save_dir, '%s-%s.csv' % (dt.datetime.now().strftime('%Y%m%d-%H%M%S'), identifier_str))
+		    df = pd.DataFrame()
+		    df['Date'] = pred_dates
+		    df['Prediction'] = pred_y
+		    export_csv = df.to_csv(save_fname, index=None, header=True)
 
 
 	def fit_one_by_one(self, x_train_o, y_train_o, x_val_o, y_val_o, batch_size, epochs, callbacks) :
@@ -151,8 +216,6 @@ class NNModel():
 		self.model.save(save_fname)
 		print('[Model] Training Completed. Model saved as %s' % save_fname)
 		timer.stop()
-
-
 
 
 
@@ -214,7 +277,7 @@ class NNModel():
 		self.model.summary()
 		return self.model
 
-
+  #used train_generator to train for 2 epochs. todo
 	def build_windowed_batch_LSTM_model(self):
 		timer = Timer()
 		timer.start()

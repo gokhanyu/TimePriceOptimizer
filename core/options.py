@@ -18,15 +18,14 @@ class Options :
   AssetTimeFrameMinutes = 60*4 #4 hour
   AssetForecastMinutes = 60*24*30 #1 month
 
-  PrepareFeatures = True #Cleans directory and prepares features with .NET dll call
+  PrepareFeatures = False #Cleans directory and prepares features with .NET dll call
   InputFeaturesPath = 'future\\' #read all input features from this folder
   OutputFeaturesPath = 'future\\output\\' #read all output features from this folder
   
-  OutputReadyTrainAllPath = os.path.join(OutputFeaturesPath, "ready_all_train")
-  OutputReadyFuturesPath = os.path.join(OutputFeaturesPath, "ready_future")
-  InputReadyTrainAllPath = os.path.join(InputFeaturesPath, "ready_all_train")
-  InputReadyFuturesPath = os.path.join(InputFeaturesPath, "ready_future")
-  
+  OutputReadyTrainAllPath = '' #init function assigns this value
+  OutputReadyFuturesPath  = '' #init function assigns this value
+  InputReadyTrainAllPath  = '' #init function assigns this value
+  InputReadyFuturesPath   = '' #init function assigns this value
 
   #ColsToExclude = ['DateTime']
   OutputValuesKey = 'rpo'
@@ -64,7 +63,8 @@ class Options :
   KerasSignalStopping = True
   KerasVerbose = 1
   KerasCheckPointForNEpoch = 6
-  KerasNNSaveDirectory = "saved_models"
+  KerasNNSaveDirectory = "data\\saved_models"
+  PredictionSaveDirectory = ""
 
   ReadNumberOfRowsFromFile = 100 if FastTestRead else None
 
@@ -75,3 +75,34 @@ class Options :
   def FuturePredictionEndDate() :
     value = Options.FuturePredictionStartDate + timedelta(days = Options.FuturePredictionDayRange)
     return value
+
+  @staticmethod
+  def PredictionSaveDirs() :
+    arr = [Options.KerasNNSaveDirectory, os.path.join(Options.PredictionSaveDirectory, Options.AssetName)]
+    return arr
+
+  @staticmethod
+  def Init() :
+    Options.OutputReadyTrainAllPath = os.path.join(Options.OutputFeaturesPath, "ready_all_train")
+    Options.OutputReadyFuturesPath  = os.path.join(Options.OutputFeaturesPath, "ready_future")
+    Options.InputReadyTrainAllPath  = os.path.join(Options.InputFeaturesPath,  "ready_all_train")
+    Options.InputReadyFuturesPath   = os.path.join(Options.InputFeaturesPath,  "ready_future")
+
+
+   
+  ################
+  
+  #DrawEpochLoss = False #draws a graph of loss and accuracy of each epoch
+  #RunCrossValidation = False
+  #HyperasSearch = False
+  
+  #FeatureFilter = []
+
+  #TransformToEmbeddingMapping = True
+  #FeaturePermutationImportancesEnabled = False
+  #FeaturePermutationImportancesTopCount = 3000
+
+
+  #CrossValidationFoldCount = 5
+  #CrossValidationRandomState = 20180818
+  #CrossValidationShowAllFoldGraphs = False

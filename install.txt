@@ -11,5 +11,5 @@ pythonnet => not sure this one is essential
 pywt  ##TO INSTALL => pip install pywavelets [DO NOT TYPE "pip install pywt"]
 
 Theano
-tensorflow
+tensorflow (latest tests were with 2.3.1)
 tensorflow-probability => no ref yet
