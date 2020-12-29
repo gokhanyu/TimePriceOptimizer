@@ -1,13 +1,10 @@
 from core.options import Options
 from core.datareader import DataReader
 
-
-
 import numpy as np
 import pandas as pd
 import pywt  ##TO INSTALL => pip install pywavelets [DO NOT TYPE "pip install pywt"]
 import matplotlib.pyplot as plt
-
 
 
 class DataPreProcessor:

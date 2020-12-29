@@ -2,7 +2,6 @@ import datetime as dt
 import os, errno
 
 
-
 class Timer():
 
 	def __init__(self):

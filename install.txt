@@ -1,0 +1,15 @@
+tested on python 3.8
+
+numpy
+pandas
+matplotlib
+
+clr => dataprocessor .net dll call
+pythonnet => not sure this one is essential
+#!TO USE CLR DLL's you need to put clr.pyd and python.runtime.dll inside your Python3.8/Dlls folder.
+
+pywt  ##TO INSTALL => pip install pywavelets [DO NOT TYPE "pip install pywt"]
+
+Theano
+tensorflow
+tensorflow-probability => no ref yet

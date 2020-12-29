@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>26643427-01c4-44bf-a057-06e5c110a5de</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>run.py</StartupFile>
+    <StartupFile>examples\eurusd_2019.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -33,6 +33,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="core\nnloss.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="examples\eurusd_2019.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="tmp\array.py">
@@ -76,7 +79,7 @@
     <Compile Include="tmp\ztemp_wavelets.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="run.py" />
+    <Compile Include="core\run.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="core\" />
@@ -84,11 +87,15 @@
     <Folder Include="data\pre_out\" />
     <Folder Include="dll\" />
     <Folder Include="bayesian\" />
+    <Folder Include="examples\" />
     <Folder Include="tmp\" />
     <Folder Include="saved_models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="dll\externals.dll" />
+    <Content Include="install.txt">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="tmp\dev_notes.txt" />
   </ItemGroup>
   <ItemGroup>

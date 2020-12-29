@@ -105,3 +105,4 @@ venv.bak/
 .vs/
 *.hdf5
 tmp/
+data/ForexData.Shortcut.lnk

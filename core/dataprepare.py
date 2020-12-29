@@ -21,5 +21,5 @@ class DataPrepare :
 
       return True
     except:
-      print("DataPrepare unexpected error:", sys.exc_info()[0])
+      print("DataPrepare unexpected error during CLR .dll load:", sys.exc_info()[0])
       return False

@@ -1,6 +1,7 @@
 from core.options import Options
 from core.utils import Timer
 from core.signalstopping import SignalStopping
+from core.utils import Utils
 
 
 import os
@@ -9,6 +10,7 @@ import math
 import numpy as np
 import datetime as dt
 import keras as keras
+import pandas as pd
 
 
 from numpy import array
@@ -24,7 +26,7 @@ from keras.utils.generic_utils import get_custom_objects
 from keras.utils import np_utils
 import tensorflow as tf
 import keras.backend as K
-sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))
+sess = tf.compat.v1.Session(config=tf.compat.v1.ConfigProto(log_device_placement=True))
 
 
 

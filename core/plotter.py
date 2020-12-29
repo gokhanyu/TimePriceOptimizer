@@ -5,22 +5,23 @@ import matplotlib.dates as mdates
 
 from datetime import (datetime, timedelta)
 from matplotlib.dates import (drange)
-from matplotlib.dates import bytespdate2num, num2date
+from matplotlib.dates import num2date #, bytespdate2num
 from matplotlib.ticker import Formatter
 
 
+
 class MyFormatter(Formatter):
-    def __init__(self, dates, fmt='%Y-%m-%d'):
-        self.dates = dates
-        self.fmt = fmt
+  def __init__(self, dates, fmt='%Y-%m-%d'):
+      self.dates = dates
+      self.fmt = fmt
 
-    def __call__(self, x, pos=0):
-        'Return the label for time x at position pos'
-        ind = int(np.round(x))
-        if ind >= len(self.dates) or ind < 0:
-            return ''
+  def __call__(self, x, pos=0):
+      'Return the label for time x at position pos'
+      ind = int(np.round(x))
+      if ind >= len(self.dates) or ind < 0:
+          return ''
 
-        return num2date(self.dates[ind]).strftime(self.fmt)
+      return num2date(self.dates[ind]).strftime(self.fmt)
 
 
 class Plotter :
