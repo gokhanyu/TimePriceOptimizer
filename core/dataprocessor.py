@@ -9,7 +9,8 @@ class DataProcessor():
 	"""A class for loading and transforming data (np array, pandas conversions)"""
 
 	def __init__(self, input_pds, output_pds, date_values, train_split, test_split):
-		assert (len(input_pds) == len(output_pds))
+		#assert (len(input_pds) == len(output_pds))
+        #assert only at train & validation phase
 
 		train_idx = int(len(input_pds) * train_split)
 		validate_idx = int(len(input_pds) * (1 - test_split))

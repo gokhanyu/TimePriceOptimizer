@@ -7,7 +7,7 @@ from datetime import (datetime, timedelta)
 from matplotlib.dates import (drange)
 from matplotlib.dates import num2date #, bytespdate2num
 from matplotlib.ticker import Formatter
-
+from core.options import Options
 
 
 class MyFormatter(Formatter):
@@ -28,6 +28,8 @@ class Plotter :
   
   # For plotting input data
   def plot_xy(self, date_values, close_values, title='', xLabel = '', yLabel = '') : 
+    if (Options.PlottingEnabled == False) :
+      return
 
     # Matplotlib prefers datetime instead of np.datetime64.
     #date = date_values_obj.astype('O')
@@ -51,6 +53,10 @@ class Plotter :
   def plot_different_scale(self, data1, data2, common_x_axis = np.array([]), x_label1 = "x", y_label1 = "y", y_label2 = "y") : 
     if (len(data1) == 0 and len(data2) == 0) :
       return
+
+    if (Options.PlottingEnabled == False) :
+      return
+    
 
     fig, ax1 = plt.subplots()
 

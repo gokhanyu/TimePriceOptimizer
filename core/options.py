@@ -21,6 +21,7 @@ class Options :
   PrepareFeatures = False #Cleans directory and prepares features with .NET dll call
   InputFeaturesPath = 'future\\' #read all input features from this folder
   OutputFeaturesPath = 'future\\output\\' #read all output features from this folder
+  PlottingEnabled = True
   
   OutputReadyTrainAllPath = '' #init function assigns this value
   OutputReadyFuturesPath  = '' #init function assigns this value

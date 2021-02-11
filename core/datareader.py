@@ -12,8 +12,8 @@ from datetime import (datetime, timedelta)
 class DataReader :
     
     @staticmethod
-    def read_dataframe(filename, tab_char = '\t'):
-      pds = pd.read_csv(filename, tab_char, header=0, infer_datetime_format=True, nrows=Options.ReadNumberOfRowsFromFile)
+    def read_dataframe(filename, tab_char = '\t', header = 0):
+      pds = pd.read_csv(filename, tab_char, header=header, infer_datetime_format=True, nrows=Options.ReadNumberOfRowsFromFile)
       row_count = len(pds)
       return pds, row_count
     
@@ -30,8 +30,8 @@ class DataReader :
 
 
     @staticmethod
-    def read_data(data_path, store_dates) :
-      output_pds = DataReader.read_dataframe(data_path, ',')
+    def read_data(data_path, store_dates, header = None) :
+      output_pds = DataReader.read_dataframe(data_path, ',', header)
       output_shape = output_pds[1]
       values = np.array(output_pds[0].iloc[:,1]) #can be price close values or even an oscillator values
       
@@ -53,7 +53,7 @@ class DataReader :
       file_dict = {}
 
       for file in files:
-        values, dates = DataReader.read_data(file, store_dates)
+        values, dates = DataReader.read_data(file, store_dates, header = None)
         filename, file_extension = os.path.splitext(os.path.basename(file))
         
         file_dict[filename] = values

@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>26643427-01c4-44bf-a057-06e5c110a5de</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>examples\eurusd_2019.py</StartupFile>
+    <StartupFile>call_from_dotnet.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -36,6 +36,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="examples\eurusd_2019.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="call_from_dotnet.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="tmp\array.py">
@@ -89,7 +92,6 @@
     <Folder Include="bayesian\" />
     <Folder Include="examples\" />
     <Folder Include="tmp\" />
-    <Folder Include="saved_models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="dll\externals.dll" />

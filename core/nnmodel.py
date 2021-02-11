@@ -190,7 +190,14 @@ class NNModel():
 		    save_fname = os.path.join(save_dir, '%s-%s.csv' % (dt.datetime.now().strftime('%Y%m%d-%H%M%S'), identifier_str))
 		    df = pd.DataFrame()
 		    df['Date'] = pred_dates
-		    df['Prediction'] = pred_y
+		    
+		    if (len(pred_y) < len(pred_dates)):
+		      new_pred_y = np.zeros((len(pred_dates), 1))
+		      new_pred_y[0:len(pred_y)] = pred_y
+		      df['Prediction'] = new_pred_y
+		    else:
+		      df['Prediction'] = pred_y
+
 		    export_csv = df.to_csv(save_fname, index=None, header=True)
 
 
