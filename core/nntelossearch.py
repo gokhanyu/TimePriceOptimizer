@@ -115,13 +115,13 @@ class NNTelosSearch():
 
     h = ta.Scan(x_train, y_train,
             params=talos_params,
-            dataset_name=Options.AssetName,
+            dataset_name=Options.RegressionAssetName,
             experiment_no='experiment1',
             model=telos_baseline_model,
             grid_downsample=0.5)
     #we're going to invoke the 'grid_downsample' parameter to 1/100 of the entire permutations. grid_downsample=0.01
 
-    r = ta.Reporting(Options.AssetName + "_experiment1.csv")
+    r = ta.Reporting(Options.RegressionAssetName + "_experiment1.csv")
 
     print(r.best_params('loss'))
 

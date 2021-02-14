@@ -51,7 +51,7 @@ class Plotter :
 
   #WRITE PARAMETER TYPES
   def plot_different_scale(self, data1, data2, common_x_axis = np.array([]), x_label1 = "x", y_label1 = "y", y_label2 = "y") : 
-    if (len(data1) == 0 and len(data2) == 0) :
+    if (len(data1) == 0 or len(data2) == 0) :
       return
 
     if (Options.PlottingEnabled == False) :

@@ -183,11 +183,12 @@ class NNModel():
 		return y_pred
 
 
-	def save_pred_to_csv(self, save_dirs_array, identifier_str, pred_dates, pred_y) :
+	def save_pred_to_csv(self, pred_dates, pred_y, save_dirs_array, fname) :
 		if (len(pred_y) > 0) :
 		  for save_dir in save_dirs_array :
 		    Utils.ensure_directory(save_dir)
-		    save_fname = os.path.join(save_dir, '%s-%s.csv' % (dt.datetime.now().strftime('%Y%m%d-%H%M%S'), identifier_str))
+		    save_fname = os.path.join(save_dir, fname)
+
 		    df = pd.DataFrame()
 		    df['Date'] = pred_dates
 		    

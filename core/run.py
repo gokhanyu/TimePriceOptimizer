@@ -43,7 +43,7 @@ def main():
 
 
   plotter = Plotter()
-  #plotter.plot_date_price(date_values, price_values, Options.AssetName)
+  #plotter.plot_date_price(date_values, price_values, Options.RegressionAssetName)
 
 
   wave_no = 0
@@ -92,12 +92,12 @@ def main():
     callbacks = model.get_callbacks(Options.KerasOneByOneEpochs)
     model.fit_one_by_one(x_train_o, y_train_o, x_val_o, y_val_o, Options.KerasOneByOneBatchSize, Options.KerasOneByOneEpochs, callbacks)
     y_train_o_pred = model.predict(x_train_o, 'x_train_o')
-    model.save_pred_to_csv(Options.PredictionSaveDirs(), 'train', date_train, y_train_o_pred)
+    model.save_pred_to_csv(date_train, y_train_o_pred, Options.PredictionSaveDirs(), Options.GetPredictionSaveFileName('train'))
   
     plotter.plot_different_scale(y_train_o_pred, y_train_o, date_train, y_label1 = "Train Prediction", y_label2 = "Train")
 
     y_val_pred = model.predict(x_val_o, 'x_val_o')
-    model.save_pred_to_csv(Options.PredictionSaveDirs(), 'val', date_val, y_val_pred)
+    model.save_pred_to_csv(date_val, y_val_pred, Options.PredictionSaveDirs(), Options.GetPredictionSaveFileName('val'))
     plotter.plot_different_scale(y_val_pred, y_val_o, date_val, y_label1 = "Validation Prediction", y_label2 = "Validation")
 
     processor2 = DataProcessor(input_pds, real_close_pds, date_values, Options.TrainDataSize, Options.TestDataSize) #DELETE THIS
@@ -105,14 +105,14 @@ def main():
 
     x_test_o, y_test_o, date_test = processor.get_one_by_one_data('test', seq_len=1, multiply_y_vector = Options.MultiplyDataByCustomFactor, normalise=Options.NormaliseData)
     y_test_o_pred = model.predict(x_test_o, 'x_test_o')
-    model.save_pred_to_csv(Options.PredictionSaveDirs(), 'test', date_test, y_test_o_pred)
+    model.save_pred_to_csv(date_test, y_test_o_pred, Options.PredictionSaveDirs(), Options.GetPredictionSaveFileName('test'))
 
     plotter.plot_different_scale(y_test_o_pred, y_test_real, y_label1 = "Test Prediction", y_label2 = "Real")
     plotter.plot_different_scale(y_test_o_pred, y_test_o, date_real, y_label1 = "Test Prediction", y_label2 = "Real RPO")
 
     future_pred = model.predict(future_input_pds, 'future_input_pds')
     plotter.plot_different_scale(future_pred, future_real_close_pds, np.array([]), y_label1 = "Future Prediction", y_label2 = "Future Real") #np.array(future_date_values) throws ex
-    model.save_pred_to_csv(Options.PredictionSaveDirs(), 'future', np.array(future_date_values), future_pred)
+    model.save_pred_to_csv(np.array(future_date_values), future_pred, Options.PredictionSaveDirs(), Options.GetPredictionSaveFileName('future'))
 
   ### ONE BY ONE END
 

@@ -2,7 +2,7 @@ import time
 import datetime
 import os
 from datetime import (timedelta)
-
+import datetime as dt
 
 class Options :
 
@@ -14,12 +14,13 @@ class Options :
 
   FastTestRead = False #reads 100 rows from file if set to true
 
-  AssetName = 'EURUSD 4H'
-  AssetTimeFrameMinutes = 60*4 #4 hour
-  AssetForecastMinutes = 60*24*30 #1 month
+  RegressionAssetName    = 'EURUSD_H4'
+  RegressionMethodName   = 'NEW_METHOD'
+  AssetTimeFrameMinutes  = 60*4 #4 hour
+  AssetForecastMinutes   = 60*24*30 #1 month
 
   PrepareFeatures = False #Cleans directory and prepares features with .NET dll call
-  InputFeaturesPath = 'future\\' #read all input features from this folder
+  InputFeaturesPath = 'future\\input\\' #read all input features from this folder
   OutputFeaturesPath = 'future\\output\\' #read all output features from this folder
   PlottingEnabled = True
   
@@ -34,7 +35,7 @@ class Options :
   RealClosePricesKey = 'real'
 
   TrainDataStartDate = datetime.datetime(1800, 1, 1)
-  FuturePredictionStartDate = datetime.datetime(2019, 1, 1)
+  FuturePredictionStartDate = datetime.datetime(2021, 1, 1)
   FuturePredictionDayRange = 60
 
   
@@ -79,7 +80,7 @@ class Options :
 
   @staticmethod
   def PredictionSaveDirs() :
-    arr = [Options.KerasNNSaveDirectory, os.path.join(Options.PredictionSaveDirectory, Options.AssetName)]
+    arr = [Options.KerasNNSaveDirectory, os.path.join(Options.PredictionSaveDirectory, Options.RegressionAssetName)]
     return arr
 
   @staticmethod
@@ -89,6 +90,11 @@ class Options :
     Options.InputReadyTrainAllPath  = os.path.join(Options.InputFeaturesPath,  "ready_all_train")
     Options.InputReadyFuturesPath   = os.path.join(Options.InputFeaturesPath,  "ready_future")
 
+  
+  @staticmethod
+  def GetPredictionSaveFileName(file_identifier_str):
+    save_fname = ('%s-%s-%s-%s.csv' % (Options.RegressionAssetName, dt.datetime.now().strftime('%Y%m%d-%H%M%S'), Options.RegressionMethodName, file_identifier_str))
+    return save_fname
 
    
   ################
